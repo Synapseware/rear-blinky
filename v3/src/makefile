@@ -88,7 +88,7 @@ OBJDIR = .
 
 
 # Shared source code
-SHARED = ../../libs
+SHARED = .
 
 
 # List C source files here. (C dependencies are automatically generated.)
@@ -131,7 +131,7 @@ DEBUG = dwarf-2
 #     Each directory must be seperated by a space.
 #     Use forward slashes for directory separators.
 #     For a directory that has spaces, enclose it in quotes.
-EXTRAINCDIRS = ../../ $(SHARED)
+EXTRAINCDIRS = $(SHARED)
 
 
 # Compiler flag to set the C Standard level.
@@ -142,13 +142,9 @@ EXTRAINCDIRS = ../../ $(SHARED)
 CSTANDARD = -std=gnu99
 
 
-# Variable declarations
-MAX_EVENT_RECORDS = 4
-
-
 # Place -D or -U options here for C sources
 CDEFS = -DF_CPU=$(F_CPU)UL
-CDEFS += -DMAX_EVENT_RECORDS=$(MAX_EVENT_RECORDS)
+
 
 # Place -D or -U options here for ASM sources
 ADEFS = -DF_CPU=$(F_CPU)
@@ -428,7 +424,6 @@ all: begin gccversion sizebefore build sizeafter end
 
 # Change the build target to build a HEX file or a library.
 build: elf hex eep lss sym
-#build: lib
 
 
 elf: $(TARGET).elf
@@ -436,8 +431,6 @@ hex: $(TARGET).hex
 eep: $(TARGET).eep
 lss: $(TARGET).lss
 sym: $(TARGET).sym
-LIBNAME=lib$(TARGET).a
-lib: $(LIBNAME)
 
 
 
